@@ -28,10 +28,10 @@ def analyze(request):
         return render(request,'app1/analyze.html',param)
 
 def web_scrape(request):
-    # s = "<button type='button'> <a href = 'http://127.0.0.1:8000/url_scraping'>Extract URLs from the link</a></button> <br> " \
-    #     "<button type='button'> <a href = 'http://127.0.0.1:8000/capitF/'>Capital First</a></button>"
-    # return HttpResponse(s)
-    return render(request,"app1/web_scrape.html")
+    s = "<button type='button'> <a href = 'http://127.0.0.1:8000/url_scraping'>Extract URLs from the link</a></button> <br> " \
+        "<button type='button'> <a href = 'http://127.0.0.1:8000/download_pdf'>Download PDF from the URL</a></button>"
+    return HttpResponse(s)
+    # return render(request,"app1/web_scrape.html")
 
 def download_pdf(request):
     urls = ['http://www.edudel.nic.in/welcome_folder/SupportMaterial2019_20/IX/English/9_sm_maths_eng_2019_20.pdf']
