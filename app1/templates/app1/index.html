@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Solve</title>
+</head>
+<body>
+<h1>Choose an option</h1>
+<form action="analyze" method="post">
+{% csrf_token %}
+    <textarea name="text" spellcheck="false" style="margin: 0px; width: 732px; height: 133px;"></textarea>
+    <br>
+    <input type="checkbox" name="extract_emails">Extract Emails
+    <br>
+    <input type="checkbox" name="extract_phone_no."> Extract Phone number
+    <br>
+    <input type="checkbox" name="extract_urls"> Extract Urls
+    <br>
+    <button type="submit">Submit</button>
+
+</form>
+</body>
+</html>
