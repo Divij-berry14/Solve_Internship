@@ -3,13 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>Web Scrape</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript">
+             function CheckOption(val){
+            var element=document.getElementById('urls');
+            var element1=document.getElementById('pdf');
+            if(val=='urls') {
+                element.style.display = 'block';
+                element1.style.display = 'none';
+                element2.style.display = 'none';
+            }
+            else {
+                element.style.display = 'none';
+                element1.style.display = 'block';
+                element2.style.display = 'block';
+            }
+            if(val=='Pick an Option'){
+                element.style.display = 'none';
+                element1.style.display = 'none';
+                element2.style.display = 'none';
+            }
+}
+
+    </script>
 </head>
 <body>
-<h1>Web Scraping Data</h1>
-{% for link in res %}
-{{ link }}
+<form method="post" action={% url 'app1:pdf' %} >
+    {% csrf_token %}
+{#   <select name="color" onchange='CheckOption(this.value);'>#}
+{#    <option>Pick an Option</option>#}
+{#    <option value="urls">Extract URLS from the links</option>#}
+{#    <option value="pdf">Download PDF from the url</option>#}
+{#  </select>#}
+{##}
+{#<input type="url" name="goo" id="google" style='display:none;' pattern="https://.*"  placeholder="https://example.com"/>#}
+{#    <input type="text" name="url" id="urls" style='display:none;' pattern="https://.*" placeholder="https://example.com" size="25"/>#}
+{#    <input type="text"  name="_pdf" id="pdf" style='display:none;' placeholder="https://example.com/abcd.pdf" size="25"/>#}
 <br>
-{% endfor %}
-
+        <input type="text"  name="_pdf" id="pdf" placeholder="https://example.com/abcd.pdf" size="25"/>
+    <button type="submit" id="btn" name="btn">Submit</button>
+</form>
 </body>
 </html>

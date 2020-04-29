@@ -27,6 +27,25 @@ def analyze(request):
         param={'res':url}
         return render(request,'app1/analyze.html',param)
 
+def web_scrape(request):
+    # s = "<button type='button'> <a href = 'http://127.0.0.1:8000/url_scraping'>Extract URLs from the link</a></button> <br> " \
+    #     "<button type='button'> <a href = 'http://127.0.0.1:8000/capitF/'>Capital First</a></button>"
+    # return HttpResponse(s)
+    return render(request,"app1/web_scrape.html")
+
+def download_pdf(request):
+    urls = ['http://www.edudel.nic.in/welcome_folder/SupportMaterial2019_20/IX/English/9_sm_maths_eng_2019_20.pdf']
+    for url in urls:
+        name = url.split('/')[-1]
+    print(name)
+    myfile = requests.get(url, allow_redirects=True,stream=True)
+    with open(name, 'wb')as pdf:
+        for chunk in myfile.iter_content(chunk_size=1024):
+            if chunk:
+                pdf.write(chunk)
+
+    return HttpResponse("Your PDF is downloaded")
+
 def url_scraping(request):
     # text=request.POST.get('text')
     # url = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]| [! * \(\),] | (?: %[0-9a-fA-F][0-9a-fA-F]))+', text)
@@ -39,10 +58,10 @@ def url_scraping(request):
     links=[]
     for link in soup.find_all('a'):
         links.append(link.get('href'))
-        print("coming links",links)
-    print("final links",links)
+        # print("coming links",links)
+    # print("final links",links)
     param={'res':links}
-    return render(request,'app1/web_scrape.html',param)
+    return render(request, 'app1/url_scrape.html', param)
 
 def emails_scraping(request):
     url='https://www.aldaily.com'
