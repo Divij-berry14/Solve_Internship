@@ -4,6 +4,13 @@ import re
 import requests
 from bs4 import BeautifulSoup
 import os
+from selenium import webdriver
+import time
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+import os
+import csv
 
 def index(request):
     return render(request,'app1/index.html')
@@ -95,5 +102,64 @@ def phoneNumber_scraping(request):
     param = {'res': phone_number}
     return render(request, 'app1/analyze.html', param)
 
+def google_maps(request):
+    return render(request,"app1/gmaps.html")
+
+def google_maps_redirect(request):
+    if request.method=="POST":
+        text=request.POST.get('text')
+        print(text)
+        queries=list(text.split('\r\n'))
+        print(queries)
+        browser = webdriver.Chrome("C:/Users/Divij/Downloads/chromedriver.exe")
+        browser.get("https://www.google.com/maps/")
+        for i in queries:
+            filename=i
+            search = browser.find_element_by_id("searchboxinput")
+            search.send_keys(i)
+            time.sleep(2)
+            click_me = browser.find_element_by_id("searchbox-searchbutton")
+            click_me.click()
+            time.sleep(4)
+            fn = open(filename + '.csv', mode='a', encoding="utf-8")
+            write_outfile = csv.writer(fn)
+            next_page = browser.find_element_by_class_name("n7lv7yjyC35__button-next-icon")
+            count = 0
+            while True:
+                click_me = browser.find_elements_by_xpath("//h3[@class='section-result-title']")
+                print(len(click_me))
+                click_me1 = click_me
+                for i in range(0, len(click_me1)):
+                    count = count + 1
+                    time.sleep(2)
+                    click_me[i].click()
+                    time.sleep(2)
+                    Name = browser.find_elements_by_xpath('//*[@id="pane"]/div/div[1]/div/div/div[2]/div[1]/div[1]/h1')
+                    Address = browser.find_elements_by_xpath("(//span[@class='widget-pane-link'])[3]")
+                    Number = browser.find_elements_by_xpath("(//span[@class='widget-pane-link'])[5]")
+                    Website = browser.find_elements_by_xpath("(//span[@class='widget-pane-link'])[6]")
+                    if len(Address) > 0 and len(Number) > 0 and len(Website) > 0 and len(Name) > 0:
+                        Name = browser.find_element_by_xpath(
+                            '//*[@id="pane"]/div/div[1]/div/div/div[2]/div[1]/div[1]/h1').text
+                        Address = browser.find_element_by_xpath("(//span[@class='widget-pane-link'])[3]").text
+                        Number = browser.find_element_by_xpath("(//span[@class='widget-pane-link'])[5]").text
+                        Website = browser.find_element_by_xpath("(//span[@class='widget-pane-link'])[6]").text
+                        # print(Name,Number,Address,Website)
+                        write_outfile.writerow([Name, Number, Address, Website])
+                        print("done")
+                    time.sleep(2)
+                    browser.find_element_by_xpath("//*[text()='Back to results']").click()
+                    time.sleep(2)
+                    click_me = browser.find_elements_by_xpath("//h3[@class='section-result-title']")
+                    print(len(click_me))
+                    time.sleep(2)
+                next_page = browser.find_element_by_class_name("n7lv7yjyC35__button-next-icon")
+                if next_page.is_enabled() and count < 20:
+                    next_page.click()
+                else:
+                    break
+            search.clear()
+        print('finished')
+    return HttpResponse("welcome to google maps redirect")
 
 

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GMaps</title>
+</head>
+<body>
+<h1> Please enter you query for google maps search</h1>
+<form method="post" action="{% url 'app1:gmaps_redirect' %}">
+    {% csrf_token %}
+    <textarea name="text" spellcheck="false" style="margin: 0px; width: 732px; height: 133px;"></textarea>
+    <br>
+    <button type="submit" name="btn" id="btn">Submit</button>
+</form>
+</body>
+</html>

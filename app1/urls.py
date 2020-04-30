@@ -11,5 +11,7 @@ urlpatterns = [
     path("url_scraping",views.url_scraping,name="scrape_url"),
     path("email_scraping",views.emails_scraping,name="scrape_email"),
     path("phone_number_scraping",views.phoneNumber_scraping,name="phone_number"),
+    path("google_maps",views.google_maps,name="gmaps"),
+    path("gmaps_redirect",views.google_maps_redirect,name="gmaps_redirect"),
 
 ]
