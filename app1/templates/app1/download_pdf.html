@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Download PDF</title>
+</head>
+<body>
+<h1>Download PDF from the link</h1>
+<form method="post" action="{% url 'app1:download_pdf_res' %}">
+    {% csrf_token %}
+<textarea value="text1" name="txt1"spellcheck="false" style="margin: 0px; width: 732px; height: 133px;"></textarea>
+<button type="submit">Submit</button>
+</form>
+</body>
+</html>

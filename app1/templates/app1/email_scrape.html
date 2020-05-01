@@ -5,9 +5,11 @@
     <title>Email Scrape</title>
 </head>
 <body>
-<h1>Email Scrape</h1>
-{% for email in res %}
-{{ email }}
-{% endfor %}
+<h1>Email Scrape from Input Link</h1>
+<form method="post" action="{% url 'app1:scrape_email_res' %}">
+    {% csrf_token %}
+<textarea value="text1" name="txt1"spellcheck="false" style="margin: 0px; width: 732px; height: 133px;"></textarea>
+<button type="submit">Submit</button>
+</form>
 </body>
 </html>

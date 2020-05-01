@@ -3,9 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Analyze text</title>
+    <script>
+function myFunction() {
+  var copyText = document.getElementById("numbers");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999)
+  document.execCommand("copy");
+}
+</script>
 </head>
 <body>
 <h1>Analyze Text</h1>
-{{res}}
+<textarea name="text"  id="numbers" style="margin: 0px; width: 750px; height: 200px;">
+    {% for i in res %}
+    {{i}}
+{% endfor %}
+</textarea>
+<br>
+<button onclick="myFunction()">Copy text</button>
+
 </body>
 </html>

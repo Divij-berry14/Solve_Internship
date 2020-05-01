@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Web Scrape</title>
+    <title>Url Scrape</title>
 </head>
 <body>
-<h1>Web Scraping Data</h1>
-{% for link in res %}
-{{ link }}
-<br>
-{% endfor %}
-
+<h1>URL Scrape from the link</h1>
+<form method="post" action="{% url 'app1:scrape_url_res' %}">
+    {% csrf_token %}
+<textarea value="text1" name="txt1"spellcheck="false" style="margin: 0px; width: 732px; height: 133px;"></textarea>
+<button type="submit">Submit</button>
+</form>
 </body>
 </html>

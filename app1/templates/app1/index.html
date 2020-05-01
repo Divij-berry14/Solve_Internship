@@ -8,15 +8,32 @@
 <h1>Choose an option</h1>
 <form action="analyze" method="post">
 {% csrf_token %}
-    <textarea name="text" spellcheck="false" style="margin: 0px; width: 732px; height: 133px;"></textarea>
+    <button type="submit" formaction ="http://127.0.0.1:8000/emails_text">Extract Emails from the text</button>
     <br>
-    <input type="checkbox" name="extract_emails">Extract Emails
+    <button type="submit" formaction ="http://127.0.0.1:8000/phone_number_text">Extract Phone Numbers from text</button>
     <br>
-    <input type="checkbox" name="extract_phone_no."> Extract Phone number
+    <button type="submit" formaction ="http://127.0.0.1:8000/url_text">Extract Urls from the text</button>
     <br>
-    <input type="checkbox" name="extract_urls"> Extract Urls
+    <button type="submit" formaction ="http://127.0.0.1:8000/email_scrape">Extract Emails from the provided URL by the user</button>
     <br>
-    <button type="submit">Submit</button>
+    <button type="submit" formaction ="http://127.0.0.1:8000/phone_number_scrape">Extract Phone Numbers from the provided URL by the user</button>
+    <br>
+    <button type="submit" formaction ="http://127.0.0.1:8000/url_scrape">Extract URLS from the provided URL by the user</button>
+    <br>
+    <button type="submit" formaction ="http://127.0.0.1:8000/download_pdf">Download PDF from the provided link by the user</button>
+    <br>
+    <button type="submit" formaction ="http://127.0.0.1:8000/google_maps">Google Maps data extraction(CSV)</button>
+{#    <br>#}
+{#    <textarea name="text" spellcheck="false" style="margin: 0px; width: 732px; height: 133px;"></textarea>#}
+{#    <br>#}
+{#    <input type="checkbox" name="extract_emails">Extract Emails#}
+{#    <br>#}
+{#    <input type="checkbox" name="extract_phone_no."> Extract Phone number#}
+{#    <br>#}
+{#    <input type="checkbox" name="extract_urls"> Extract Urls#}
+{#    <br>#}
+{#    <button type="submit">Submit</button>#}
+{#    <button type="submit" formaction ="http://127.0.0.1:8000/url_scraping">Extract URLS from the Link</button>#}
 
 </form>
 </body>

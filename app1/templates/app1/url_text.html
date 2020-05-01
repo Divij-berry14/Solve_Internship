@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Emails_Text</title>
+  </head>
+  <body>
+    <h1>Extract URLS from the text</h1>
+    <form id="panda" method="post">
+      {% csrf_token %}
+      <textarea value="url_text1" id="url_txt1" spellcheck="false" style="margin: 0px; width: 732px; height: 133px;"></textarea>
+      <button type="submit" id="url_text">
+        Click for Results
+      </button>
+      <textarea name="url_text2" id="url_txt2" name="txt2" style="display: none;" spellcheck="false" style="margin: 0px; width: 732px; height: 133px;"></textarea>
+      <button id="btn1" onclick="myFunction()" style="display: none;">
+        Copy text
+      </button>
+    </form>
+    <script>
+      function myFunction() {
+        var copyText = document.getElementById("url_txt2");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+      }
+      function display_data(val) {
+        var element1 = document.getElementById("url_txt1");
+        var element3=document.getElementById("btn1")
+        let urls = val.match(/\bhttps?:\/\/\S+/gi);
+        var element2 = document.getElementById("url_txt2");
+        element1.style.display = "block";
+        document.getElementById("url_txt2").innerText = urls;
+        element2.style.display = "block";
+        element3.style.display="block"
+      }
+
+      var my_func = function (event) {
+        event.preventDefault();
+        var element1 = document.getElementById("url_txt1");
+        display_data(element1.value);
+      };
+
+      var form = document.getElementById("panda");
+      form.addEventListener("submit", my_func, true);
+    </script>
+  </body>
+</html>

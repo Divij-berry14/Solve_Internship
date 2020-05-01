@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Emails_Text</title>
+
+</head>
+<body>
+<h1>Extract Emails from the text</h1>
+<form method="post" id="panda">
+{% csrf_token %}
+<textarea value="text1" id="txt1"spellcheck="false" style="margin: 0px; width: 732px; height: 133px;"></textarea>
+<button type="submit" onclick="display_data()" id="emails_text">Click for Results</button>
+<textarea name="text2" id="text2" name="txt2" style="display: none" spellcheck="false" style="margin: 0px; width: 732px; height: 133px;"></textarea>
+<button id="btn1" id="btn1" onclick="myFunction()" style="display: none">Copy text</button>
+</form>
+<script>
+function myFunction() {
+  var copyText = document.getElementById("numbers");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999)
+  document.execCommand("copy");
+}
+function display_data(val) {
+    emails = val.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi)
+    var element1=document.getElementById('txt1').value;
+    window.alert(element1)
+{#var element2=document.getElementById('btn1');#}
+{#element1.style.display = 'block';#}
+{#document.getElementById("text2").innerText='emails';#}
+{#element2.style.display = 'block';#}
+}
+var form = document.getElementById("panda");
+
+      // attach event listener
+      form.addEventListener("submit", my_func, true);
+</script>
+</body>
+</html>

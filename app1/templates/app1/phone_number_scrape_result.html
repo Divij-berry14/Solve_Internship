@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phone Number Scrape Result</title>
+</head>
+<body>
+<h1> Phone Number Scrape Result</h1>
+<textarea value="text2" id="text2" name="txt2"spellcheck="false" style="margin: 0px; width: 732px; height: 133px;">
+    {% for i in res %}
+        {{ i }}
+    {% endfor %}
+</textarea>
+<br>
+<button id="btn1"onclick="myFunction()">Copy text</button>
+<script>
+function myFunction() {
+  var copyText = document.getElementById("text2");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999)
+  document.execCommand("copy");
+}
+</script>
+</body>
+</html>
