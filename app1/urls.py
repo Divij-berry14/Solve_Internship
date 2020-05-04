@@ -20,5 +20,7 @@ urlpatterns = [
     path("phone_number_scrape_result",views.phoneNumber_scraping_result,name="phone_scrape_res"),
     path("google_maps",views.google_maps,name="gmaps"),
     path("gmaps_redirect",views.google_maps_redirect,name="gmaps_redirect"),
-
+    path("youtube_download",views.youtube_download,name="ytube"),
+    path("youtube_download_res",views.youtube_download_res,name="ytube_res"),
+    path('audio_text',views.audio_text,name='audio_txt')
 ]

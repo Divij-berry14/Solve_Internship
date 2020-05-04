@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Youtube Video Download</title>
+</head>
+<body>
+<h1>Input the Youtube link for download</h1>
+<form method="post" action={% url 'app1:ytube_res' %} >
+    {% csrf_token %}
+   <select name="color" onchange='CheckOption(this.value);'>
+    <option>Pick an Option</option>
+    <option value="yvideo">Download Video</option>
+    <option value="yaudio">Download Audio</option>
+       <option value="ytext">Transcript Text from Audio/text</option>
+  </select>
+
+{#<input type="url" name="goo" id="google" style='display:none;' pattern="https://.*"  placeholder="https://example.com"/>#}
+    <textarea type="text" name="yVideo" id="yVideo" style="display:none;margin: 0px; width: 732px; height: 133px;" placeholder="https://youtube.com" size="30"></textarea>
+    <textarea type="text"  name="yAudio" id="yAudio" style="display:none;margin: 0px; width: 732px; height: 133px;" placeholder="https://youtube.com/abcd.pdf" size="30"></textarea>
+    <textarea type="text"  name="yText" id="yText" style="display:none;margin: 0px; width: 732px; height: 133px;" placeholder="https://youtube.com/abcd.pdf" size="30"></textarea>
+<br>
+    <button type="submit"> Submit</button>
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript">
+             function CheckOption(val){
+            var element=document.getElementById('yVideo');
+            var element1=document.getElementById('yAudio');
+            var element2=document.getElementById('yText')
+            if(val=='yvideo') {
+                element.style.display = 'block';
+                element1.style.display = 'none';
+                element2.style.display = 'none';
+            }
+            else if(val=='yaudio'){
+                element.style.display = 'none';
+                element1.style.display = 'block';
+                element2.style.display = 'none';
+            }
+            else {
+                element.style.display = 'none';
+                element1.style.display = 'none';
+                element2.style.display = 'block';
+            }
+}
+
+    </script>
+</body>
+</html>
