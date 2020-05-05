@@ -1,3 +1,5 @@
 from django.db import models
 
-# Create your models here.
+class Download(models.Model):
+    download_id=models.AutoField
+
