@@ -12,7 +12,7 @@ from selenium.webdriver.common.by import By
 import os
 import csv
 import youtube_dl
-from youtube_transcript_api import YoutubeTranscriptApi
+
 
 def index(request):
     return render(request,'app1/index.html')
