@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload</title>
+</head>
+<body>
+<h1>Upload the Audio File to transcript the text </h1>
+<form method="post" enctype="multipart/form-data" action="{% url 'app1:audio_txt'%}" >
+    {% csrf_token %}
+    <input type="file" name="video">
+    <button type="submit">Upload</button>
+    <textarea name="text2" id="text2" name="txt2" style="display: none;" spellcheck="false" style="margin: 0px; width: 732px; height: 133px;">
+        {% if param %}
+            {{ audio_text }}
+        {% endif %}
+        {{text}}
+    </textarea>
+</form>
+</body>
+</html>

@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.urls import path,include
 from .import views
-
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("",views.index),
@@ -22,5 +23,9 @@ urlpatterns = [
     path("gmaps_redirect",views.google_maps_redirect,name="gmaps_redirect"),
     path("youtube_download",views.youtube_download,name="ytube"),
     path("youtube_download_res",views.youtube_download_res,name="ytube_res"),
-    path('audio_text',views.audio_text,name='audio_txt')
+    path("upload_audio",views.upload_audio,name="audio"),
+    path('audio_text',views.audio_text,name='audio_txt'),
 ]
+
+if settings.DEBUG:
+    urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

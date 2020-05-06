@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Audio result</title>
+</head>
+<body>
+<h1> Audio Text</h1>
+<textarea value="text1" id="text1" spellcheck="false" style="margin: 0px; width: 732px; height: 133px;">{{ audio_text }}</textarea>
+<br>
+<button id="btn1" onclick="myFunction()">Copy text</button>
+<script>
+function myFunction() {
+  var copyText = document.getElementById("text1");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999)
+  document.execCommand("copy");
+}
+</script>
+</body>
+</html>

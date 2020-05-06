@@ -15,6 +15,7 @@ import youtube_dl
 import speech_recognition as sr
 from os import path
 from pydub import AudioSegment
+from django.core.files.storage import FileSystemStorage
 
 
 def index(request):
@@ -204,7 +205,7 @@ ydl_opts2 = {
     'format': 'bestaudio/best',
     'postprocessors': [{
         'key': 'FFmpegExtractAudio',
-        'preferredcodec': 'mp3',
+        'preferredcodec': 'wav',
         'preferredquality': '192',
     }],
 }
@@ -228,6 +229,8 @@ def youtube_download_res(request):
                 ydl.download([zxt])
             return HttpResponse("Download complete")
 
+def upload_audio(request):
+    return render(request,"app1/upload.html")
 def audio_text(request):
     # src = "Convert Audio File to Text in Python - Speech Recognition in Python   KGP Talkie-dIcoMJqWWYA.mp3"
     # dst = "test.wav"
@@ -237,16 +240,28 @@ def audio_text(request):
     # sound.export(dst, format="wav")
     # print("hello")
     # return HttpResponse("hello")
-    r=sr.Recognizer()
-    with sr.AudioFile("test.wav") as source:
-        audio=r.listen(source)
+    if request.method=="POST":
+        uploaded_file=request.FILES['video']
+        name=uploaded_file.name
+        print(uploaded_file.name)
+        print(uploaded_file.size)
+        # fs=FileSystemStorage()
+        # fs.save(uploaded_file.name,uploaded_file)
+        r=sr.Recognizer()
+        with sr.AudioFile(name) as source:
+            audio=r.listen(source)
         try:
             text=r.recognize_google(audio)
             print("Working on....")
             print(text)
-        except:
+            param={'audio_text':text}
+        except sr.UnknownValueError:
             print("Sorry..run again...")
-    return HttpResponse("Text Converted")
+        except sr.RequestError as e:
+            print("Could not request results from Google Speech Recognition service; {0}".format(e))
+
+        return render(request,'app1/audio_text_res.html',param)
+
 
 
 
