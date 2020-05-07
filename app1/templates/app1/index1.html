@@ -5,7 +5,10 @@
     <title>Solve</title>
 </head>
 <body>
-<h1>Choose an option</h1>
+<h1>
+    Welcome, {{ user.username }}!
+</h1>
+<h2>Choose an option</h2>
 <form action="analyze" method="post">
 {% csrf_token %}
     <input type=button onClick="location.href='{% url 'app1:emails_txt' %}'" value='Extract Emails from the text'>

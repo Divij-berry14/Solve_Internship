@@ -3,9 +3,14 @@ from django.urls import path,include
 from .import views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.views import LoginView,LogoutView
 
 urlpatterns = [
-    path("",views.index),
+    path('',views.indexView, name='home'),
+    path('register',views.register,name='register_url'),
+    path('login',LoginView.as_view(),name="login_url"),
+    path('logout',LogoutView.as_view(next_page='app1:login_url'),name="logout"),
+    path("home",views.index1,name="index1"),
     path("emails_text",views.emails_text,name="emails_txt"),
     # path("analyze",views.analyze,name="analyze_text"),
     path("phone_number_text",views.phone_numbers_text,name='phone_text'),

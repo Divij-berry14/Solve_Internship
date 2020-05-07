@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 import re
 import requests
 from bs4 import BeautifulSoup
@@ -16,10 +16,23 @@ import speech_recognition as sr
 from os import path
 from pydub import AudioSegment
 from django.core.files.storage import FileSystemStorage
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+def indexView(request):
+    return render(request,"index.html")
+@login_required
+def register(request):
+    if request.method=="POST":
+        form=UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login_url')
+    else:
+        form=UserCreationForm()
+    return render(request,'registration/register.html',{'form':form})
 
-
-def index(request):
-    return render(request,'app1/index.html')
+def index1(request):
+    return render(request, 'app1/index1.html')
 
 def emails_text(request):
     return render(request,'app1/emails_text _1.html')
