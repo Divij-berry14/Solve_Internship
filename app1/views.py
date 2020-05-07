@@ -20,7 +20,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 def indexView(request):
     return render(request,"index.html")
-@login_required
+# @login_required
 def register(request):
     if request.method=="POST":
         form=UserCreationForm(request.POST)

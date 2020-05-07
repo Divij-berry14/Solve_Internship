@@ -11,6 +11,7 @@
     <a href="{% url 'app1:logout' %}">Logout</a>
         {% else %}
         <a href="{% url 'app1:login_url' %}">Login</a>
+{#         <a href="{% url 'app1:register_url' %}">Register</a>#}
     {% endif %}
 {% endblock %}
 </body>
